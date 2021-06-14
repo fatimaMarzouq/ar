@@ -17,6 +17,7 @@ pydot = "*"
 django-crispy-forms = "*"
 crispy-tailwind = "*"
 django-phonenumber-field = {extras = ["phonenumbers"], version = "*"}
+qrcode = "*"
 
 [dev-packages]
 

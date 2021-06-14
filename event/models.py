@@ -3,7 +3,10 @@ import uuid
 # from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth import get_user_model
-
+import qrcode
+from io import BytesIO
+from django.core.files import File
+from PIL import Image, ImageDraw
 User = get_user_model()
 
 
@@ -92,12 +95,26 @@ class Event(models.Model):
     )
     Locations = models.ManyToManyField(Location)
     Assets = models.ManyToManyField(Asset)
+    qr_code = models.ImageField(upload_to='qr_codes/', blank=True,null=True)
 
     def __str__(self):
         return self.Name
 
     def get_absolute_url(self):
         return reverse('events')
+
+    def save(self, *args,**kwargs):
+        qrcode_img = qrcode.make(self.id)
+        canvas = Image.new('RGB',(290,290),'white')
+        draw = ImageDraw.Draw(canvas)
+        canvas.paste(qrcode_img)
+        fname = f'qr_code-{self.id}.png'
+        buffer = BytesIO()
+        canvas.save(buffer, 'png')
+        self.qr_code.save(fname, File(buffer), save=False)
+        canvas.close()
+        super().save(*args, **kwargs)
+
 
 
 

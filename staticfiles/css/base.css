@@ -30,3 +30,16 @@ input[type=checkbox] {
 .profileEditForm #div_id_password{
     display: none;
 }
+.locationTable tr:nth-child(even) {background-color: #f6f6f6;}
+.locationTable th, .locationTable td {
+  text-align: left;
+  padding: 8px;
+}
+
+.card{
+
+    box-shadow: 0 0 15px 0px rgb(0 0 0 / 15%);
+    padding: 8px;
+    border-radius: 10px;
+
+}

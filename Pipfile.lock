@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "268f2f71da37970d66d8ac568599cdf946f3ad05883434f52ee9a7de9962e07f"
+            "sha256": "b83d20a16dbc08a14fd03e8cf4c4fd63b0831e44a2b6c41b5f18416db813a5d8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -74,7 +74,7 @@
                 "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b",
                 "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"
             ],
-            "markers": "platform_system == 'Windows'",
+            "markers": "platform_system == 'Windows' and platform_system == 'Windows'",
             "version": "==0.4.4"
         },
         "cookiecutter": {
@@ -371,6 +371,14 @@
                 "sha256:eb10ce3e7736052ed3623d49975ce333bcd712c7bb19a58b9e2089d4057d0798"
             ],
             "version": "==2021.1"
+        },
+        "qrcode": {
+            "hashes": [
+                "sha256:3996ee560fc39532910603704c82980ff6d4d5d629f9c3f25f34174ce8606cf5",
+                "sha256:505253854f607f2abf4d16092c61d4e9d511a3b4392e60bff957a68592b04369"
+            ],
+            "index": "pypi",
+            "version": "==6.1"
         },
         "requests": {
             "hashes": [
