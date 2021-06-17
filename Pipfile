@@ -21,6 +21,9 @@ dj-database-url = "*"
 environs = {version = "==8.0.0", extras = ["django"]}
 whitenoise = "==5.1.0"
 gunicorn = "==20.0.4"
+django-heroku = "*"
+
 [dev-packages]
+
 [requires]
 python_version = "3.8"
