@@ -27,13 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = '5_fzp%ibq*#l5ofy1lucm0i2d79jw=(2h1wvoaq75z(8+6jn)5'
-SECRET_KEY = os.environ.get('SECRET_KEY', default='foo')
+# SECRET_KEY = os.environ.get('SECRET_KEY', default='foo')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = int(os.environ.get('DEBUG', default=0))
+# DEBUG = int(os.environ.get('DEBUG', default=0))
 
-ALLOWED_HOSTS = ['https://arlocations.herokuapp.com/']
+# ALLOWED_HOSTS = ['https://arlocations.herokuapp.com/']
 
 SECRET_KEY = env("DJANGO_SECRET_KEY")
 
@@ -176,7 +176,6 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'tailwind'
 # NPM_BIN_PATH = 'C:\\Program Files\\nodejs\\npm.cmd'
 # NPM_BIN_PATH='docker.io/library/node'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 LOGIN_REDIRECT_URL = 'events'
@@ -190,3 +189,4 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool("DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS
 SECURE_HSTS_PRELOAD = env.bool("DJANGO_SECURE_HSTS_PRELOAD", default=True)
 SESSION_COOKIE_SECURE = env.bool("DJANGO_SESSION_COOKIE_SECURE", default=True)
 CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=True)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
