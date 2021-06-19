@@ -52,12 +52,13 @@ class AssetCreationForm(forms.ModelForm):
         model = Asset
         fields = ['Asset_File', 'featured_image', 'Google_maps_link', 'ASSETS_TYPE', 'Expiry_date', 'Expiry_time']
         widgets = {
+            'Asset_File': forms.FileField(attrs={'onchange': 'handleContentUpload(this)', }),
             'Expiry_date': forms.DateInput(format=('%Y-%m-%d'),
                                              attrs={'class': 'datepicker1', 'placeholder': 'Select Date', 'type': 'date'}),
             'Expiry_time': forms.TimeInput(format='%H:%M',attrs={'type': 'time'}),
         }
 
-    Asset_File = forms.FileField()
+
     Google_maps_link = forms.CharField()
 
     featured_image = forms.ImageField()
