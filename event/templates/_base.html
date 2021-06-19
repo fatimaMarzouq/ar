@@ -18,13 +18,11 @@
   <header>
     <!-- Fixed navbar -->
     <div class="flex justify-between align-items-center p-6 bg-white border-bottom shadow-sm">
-         {% if user.is_authenticated %}
-            <a href="{% url 'events' %}" class="navbar-brand my-0 font-bold block flex" style="align-items: center;">
+         <a href="{% url 'events' %}" class="navbar-brand my-0 font-bold block flex" style="align-items: center;">
                 <div class="rounded-xl bg-purple-300 text-purple-800 p-4 mx-3">Dz</div>
                 <div class="font-bold  flex flex-col justify-center">DazShop</div>
             </a>
-
-
+        {% if user.is_authenticated %}
         <div class="flex w-1/6">
             <a href="{% url 'profile' %}">
 
@@ -47,10 +45,6 @@
 <!--        <p><a href="#">Log out</a></p>-->
 
       {% else %}
-        <a href="{% url 'login' %}" class="navbar-brand my-0 font-bold block flex" style="align-items: center;">
-                <div class="rounded-xl bg-purple-300 text-purple-800 p-4 mx-3">Dz</div>
-                <div class="font-bold  flex flex-col justify-center">DazShop</div>
-            </a>
         <div class="flex flex-row " style="align-items: center;">
             <a class="bg-purple-800 text-white px-6 py-0.5 h-8 rounded outline-none mx-2 block " href="{% url 'login' %}">Log In</a>
             <a class="bg-purple-800 text-white px-6 py-0.5 h-8 rounded outline-none mx-2 block" href="{% url 'signup' %}">Sign Up</a>
@@ -59,6 +53,7 @@
     </div>
   </header>
   <div class="flex flex-row">
+      {% if user.is_authenticated %}
      <nav class="w-1/5 border-r-2 pl-16">
          <ul>
              <li class="my-6">
@@ -74,6 +69,10 @@
       </nav>
      <div class="container">
          <div class="m-6">
+      {% else %}
+ <div class="container">
+         <div class="max-w-xl mx-auto my-16">
+         {% endif %}
 
     {% block content %}
     {% endblock content %}

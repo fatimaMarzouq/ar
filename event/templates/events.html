@@ -1,8 +1,11 @@
 {% extends '_base.html' %}
+{% load static %}
 
 {% block title %}events{% endblock title %}
 
 {% block content %}
+        {% if user.is_authenticated %}
+
 <div class="grid grid-cols-3 gap-4 w-5/6 pl-6 pt-6">
   {% for event in object_list %}
     {% if user.id  == event.user.id %}
@@ -21,4 +24,9 @@
     {% endif %}
   {% endfor %}
 </div>
+      {% else %}
+<h1>Homepage</h1>
+  <img class="bookcover" src="{% static 'images/dfp.png' %}">
+      {% endif %}
+
 {% endblock content %}
