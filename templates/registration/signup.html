@@ -7,5 +7,6 @@
     {% csrf_token %}
     {{ form|crispy }}
     <button class="bg-purple-800 text-white px-8 py-3 rounded outline-none block mx-auto my-6" type="submit">Sign Up</button>
+    <p class="text-gray-500 text-center"> Already have an account?  <a class="text-purple-400 capitalize hover:text-purple-800" href="{% url 'login' %}">Login</a></p>
 </form>
 {% endblock content %}

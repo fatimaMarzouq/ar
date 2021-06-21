@@ -17,7 +17,7 @@ from .views import ( HomePageView,
                      LocationDetailView,
                      LocationDeleteView,)
 urlpatterns = [
-    # path('about/', AboutPageView.as_view(), name='about'), # new
+    # path('', HomePageView.as_view(), name='home'),  new
     path('', EventListView.as_view(), name='events'),
     path('assets/', AssetListView.as_view(), name='Assets_list'),
     path('locations/', LocationListView.as_view(), name='location_list'),

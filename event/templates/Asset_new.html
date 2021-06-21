@@ -3,9 +3,41 @@
 {% load crispy_forms_tags %}
 {% block content %}
   <h1 class="text-4xl font-bold text-black">Create Asset</h1>
-  <form class="creationForm my-6 w-2/3" method="POST"  enctype="multipart/form-data">{% csrf_token %}
+  <form class="creationForm my-6 w-2/3" method="POST" enctype="multipart/form-data">{% csrf_token %}
     <div class="creationForm grid grid-cols-2 gap-4">
-        {{ form|crispy }}
+
+<div id="div_content-file" class="mb-3">
+    <label for="content-file" class=" passive-button file-input block text-gray-700 text-sm font-bold mb-2">
+            Asset file<span class="asteriskField">*</span>
+    </label>
+    <input type="file" name="Asset_File" class="clearablefileinput "  hidden id="content-file" accept="*" onchange="handleContentUpload(this)">
+    <p id="content-error" class="error"></p>
+
+</div>
+        <div id="content-preview" target="content-file">
+                <file-holder></file-holder>
+            </div>
+        <div id="div_id_featured_image" class="mb-3">
+            <label for="id_featured_image" class="block text-gray-700 text-sm font-bold mb-2">
+            Featured image<span class="asteriskField">*</span>
+            </label>
+            <input type="file" name="featured_image" accept="image/*" class="clearablefileinput "   id="id_featured_image">
+        </div>
+        <div id="div_id_Google_maps_link" class="mb-3">
+            <label for="id_Google_maps_link" class="block text-gray-700 text-sm font-bold mb-2">
+            Google maps link<span class="asteriskField">*</span>
+            </label>
+            <input type="text" name="Google_maps_link" class="textinput py-2 block bg-white border-gray-300 px-4 rounded-lg focus:outline-none w-full appearance-none text-gray-700 border leading-normal"   id="id_Google_maps_link">
+        </div>
+        <div id="div_id_ASSETS_TYPE" class="mb-3"> <label for="id_ASSETS_TYPE" class="block text-gray-700 text-sm font-bold mb-2">
+            ASSETS TYPE<span class="asteriskField">*</span> </label> <div class="mb-3"> <div class="relative">
+<select class="bg-white focus:outline-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal text-gray-700" name="ASSETS_TYPE"> <option value="IOS" selected="">IOS</option> <option value="ANDROID">Android</option> </select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"> <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path> </svg> </div>
+</div>
+</div> </div> <div id="div_id_Expiry_date" class="mb-3"> <label for="id_Expiry_date" class="block text-gray-700 text-sm font-bold mb-2">
+            Expiry date<span class="asteriskField">*</span> </label> <input type="date" name="Expiry_date" class="datepicker1 dateinput py-2 block bg-white border-gray-300 px-4 rounded-lg focus:outline-none w-full appearance-none text-gray-700 border leading-normal" placeholder="Select Date"   id="id_Expiry_date"> </div> <div id="div_id_Expiry_time" class="mb-3"> <label for="id_Expiry_time" class="block text-gray-700 text-sm font-bold mb-2">
+            Expiry time<span class="asteriskField">*</span> </label> <input type="time" name="Expiry_time" class="timeinput py-2 block bg-white border-gray-300 px-4 rounded-lg focus:outline-none w-full appearance-none text-gray-700 border leading-normal"   id="id_Expiry_time"> </div>
+
     </div>
 <div class="p-4 flex justify-end">
         <button class="bg-purple-800 text-white px-16 py-3 rounded outline-none block" type="submit">Save</button>

@@ -1,0 +1,45 @@
+
+.bookcover {
+  height: 300px;
+  width: auto;
+}
+.creationForm p{
+margin-top:2%;
+margin-bottom:2%;
+}
+input, select, textarea{
+    background-color: #F8FAFC !important;
+}
+.imageInput,.clearablefileinput{
+   padding: 1.35% 1% !important;
+    line-height: inherit !important;
+    color: inherit !important;
+    width: 100% !important;
+    border-radius: 9px !important;
+    border: solid 1px rgba(209,213,219,0.9);
+}
+input:focus,button:focus{
+outline:none !important
+}
+input[type=checkbox] {
+    padding: 0%;
+    background-color: transparent;
+    width: auto;
+    border-radius: 3px;
+}
+.profileEditForm #div_id_password{
+    display: none;
+}
+.locationTable tr:nth-child(even) {background-color: #f6f6f6;}
+.locationTable th, .locationTable td {
+  text-align: left;
+  padding: 8px;
+}
+
+.card{
+
+    box-shadow: 0 0 15px 0px rgb(0 0 0 / 15%);
+    padding: 8px;
+    border-radius: 10px;
+
+}

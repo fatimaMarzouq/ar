@@ -3,15 +3,29 @@ version: '3.7'
 services:
   web:
     build: .
-    command: python /code/manage.py runserver 0.0.0.0:8000
+    # command: python /code/manage.py runserver 0.0.0.0:8000
+    command: gunicorn config.wsgi -b 0.0.0.0:8000
+
     volumes:
       - .:/code
     ports:
       - 8000:8000
     depends_on:
       - db
+    environment:
+      - "DJANGO_SECRET_KEY=5_fzp%ibq*#l5ofy1lucm0i2d79jw=(2h1wvoaq75z(8+6jn)5"
+      - "DJANGO_DEBUG=True"
+      - "DJANGO_SECURE_SSL_REDIRECT=False" # new
+      - "DJANGO_SECURE_HSTS_SECONDS=0" # new
+      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS=False" # new
+      - "DJANGO_SECURE_HSTS_PRELOAD=False" # new
+      - "DJANGO_SESSION_COOKIE_SECURE=False" # new
+      - "DJANGO_CSRF_COOKIE_SECURE=False" # new
+
   db:
     image: postgres:11
     environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+        POSTGRES_PASSWORD: "postgres"
+#      - "POSTGRES_OST_AUTH_METHOD=trust"
+#      POSTGRES_PASSWORD: example
 

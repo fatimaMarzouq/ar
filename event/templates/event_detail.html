@@ -8,11 +8,169 @@
                 {% endif %}
             <h2>{{ object.Name }}</h2>
             <p> <span class="text-muted"> Starting date: {{ object.Starting_date }} | Ending date: {{ object.Ending_date }}</span></p>
-            <p>Locations {{ object.Locations }}</p>
+            <p>Locations {{ object.Locations.name }}</p>
           </div>
 
           <p><a class="text-purple-400 capitalize hover:text-purple-800" href="{% url 'event_edit' event.id %}">Edit</a> |
             <a class="text-purple-400 capitalize hover:text-purple-800" href="{% url 'event_delete' event.id %}">Delete</a></p>
           <p>Back to <a href="{% url 'events' %}">All Events</a>.</p>
     {% endif %}
+
+<!-- component -->
+<div class="px-4 py-2 text-gray-800">
+  <div class="hidden xl:flex flex-row justify-between shadow-md border rounded-md">
+    <div
+      class="flex flex-col items-center justify-between w-1/4 px-4 py-2 bg-white border-r-2 border-gray-500 border-dashed rounded-l-md"
+    >
+      <div class="flex-col">
+        {% if object.qr_code %}
+            <img src="{{ object.qr_code.url }}" style="mix-blend-mode:multiply">
+        {% endif %}
+        <p class="my-2 text-xs italic font-light text-gray-500">
+          Scan here to check in!
+        </p>
+        <div class="text-xs mb-2 text-gray-600">
+          <span class="text-gray-500">Valid until :</span>
+          <br />
+          {{ object.ending_date }}
+        </div>
+      </div>
+    </div>
+    <div class="relative flex flex-col w-3/4">
+      {% if object.Photo %}
+     <img class="w-full h-96 object-cover object-center" src="{{ object.Photo.url }}">
+        {% endif %}
+      <div class="absolute p-1 bottom-28">
+        <div
+          class="flex flex-row px-4 py-2 text-xs font-bold text-purple-800 bg-white rounded-md "
+        >
+          <span class="mr-2 font-normal text-gray-500">Event Name :</span>
+          <p class="font-semibold text-purple-800 capitalize">{{ object.Name }}</p>
+        </div>
+      </div>
+      <div class="absolute self-end mr-1 mt-1">
+        <p
+          class="px-4 py-2 text-xs font-bold text-purple-800 bg-white rounded-md "
+        >
+          <span class="font-normal text-gray-500">Organizer :</span>
+            {{ object.user }}
+        </p>
+      </div>
+      <div class="absolute bottom-0 flex flex-col w-full h-28">
+        <div class="w-full h-full bg-white opacity-75 rounded-br-md"></div>
+        <div class="absolute grid grid-cols-3 w-full p-2 text-gray-800 opacity-100">
+          <div class="flex flex-col ">
+            <div class="flex flex-col">
+              <p class="mb-1 text-sm text-gray-500 flex flex-row items-center">
+                  <svg class="w-4 h-4 mr-1" fill="currentColor" stroke="currentColor" enable-background="new 0 0 510.992 510.992" viewBox="0 0 510.992 510.992" xmlns="http://www.w3.org/2000/svg"><path d="m151.121 129.051c-8.837 0-16-7.163-16-16v-97.051c0-8.837 7.163-16 16-16s16 7.163 16 16v97.051c0 8.837-7.163 16-16 16z"/><path d="m359.872 129.051c-8.837 0-16-7.163-16-16v-97.051c0-8.837 7.163-16 16-16s16 7.163 16 16v97.051c0 8.837-7.163 16-16 16z"/><path d="m24.263 221.975v220.767c0 37.634 30.617 68.251 68.251 68.251h325.965c37.634 0 68.251-30.617 68.251-68.251v-220.767z"/><path d="m486.729 189.975v-73.198c0-37.634-30.617-68.251-68.251-68.251h-10.606v64.525c0 26.468-21.532 48-48 48s-48-21.532-48-48v-64.526h-112.751v64.525c0 26.468-21.532 48-48 48s-48-21.532-48-48v-64.525h-10.607c-37.634 0-68.251 30.617-68.251 68.251v73.198h462.466z"/></svg>
+                  Start Date :</p>
+              <p class="text-xs font-semibold text-purple-800">
+                {{ object.starting_date }}
+              </p>
+            </div>
+            <div class="hidden md:flex flex-col mt-3">
+              <p class="mb-1 text-sm text-gray-500 flex flex-row items-center">
+                  <svg class="w-4 h-4 mr-1" fill="currentColor" stroke="currentColor" enable-background="new 0 0 510.992 510.992" viewBox="0 0 510.992 510.992" xmlns="http://www.w3.org/2000/svg"><path d="m151.121 129.051c-8.837 0-16-7.163-16-16v-97.051c0-8.837 7.163-16 16-16s16 7.163 16 16v97.051c0 8.837-7.163 16-16 16z"/><path d="m359.872 129.051c-8.837 0-16-7.163-16-16v-97.051c0-8.837 7.163-16 16-16s16 7.163 16 16v97.051c0 8.837-7.163 16-16 16z"/><path d="m24.263 221.975v220.767c0 37.634 30.617 68.251 68.251 68.251h325.965c37.634 0 68.251-30.617 68.251-68.251v-220.767z"/><path d="m486.729 189.975v-73.198c0-37.634-30.617-68.251-68.251-68.251h-10.606v64.525c0 26.468-21.532 48-48 48s-48-21.532-48-48v-64.526h-112.751v64.525c0 26.468-21.532 48-48 48s-48-21.532-48-48v-64.525h-10.607c-37.634 0-68.251 30.617-68.251 68.251v73.198h462.466z"/></svg>
+                  End Date :</p>
+              <p class="text-xs font-semibold text-purple-800">
+                {{ object.ending_date }}
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-col ml-4 ">
+
+            <div class="flex flex-col">
+              <p class="mb-1 text-sm text-gray-500 flex flex-row items-center">
+                  <svg class="w-4 h-4 mr-1" fill="currentColor" stroke="currentColor" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+		<path d="M256,0C161.896,0,85.333,76.563,85.333,170.667c0,28.25,7.063,56.26,20.49,81.104L246.667,506.5
+			c1.875,3.396,5.448,5.5,9.333,5.5s7.458-2.104,9.333-5.5l140.896-254.813c13.375-24.76,20.438-52.771,20.438-81.021
+			C426.667,76.563,350.104,0,256,0z M256,256c-47.052,0-85.333-38.281-85.333-85.333c0-47.052,38.281-85.333,85.333-85.333
+			s85.333,38.281,85.333,85.333C341.333,217.719,303.052,256,256,256z"/>
+</svg>
+                  Locations :</p>
+                <ul class="text-xs font-semibold text-purple-800">
+              {% for loc in object.Locations.all %}
+              <li>{{ loc.Longitude }}</li>
+              {% endfor %}
+          </ul>
+
+            </div>
+          </div>
+          <div class="flex flex-col ml-4 ">
+            <div class="flex flex-col">
+              <p class="mb-1 text-sm text-gray-500 flex flex-row items-center">
+                  <svg class="w-3 h-3 mr-1" fill="currentColor" stroke="currentColor" enable-background="new 0 0 24 24" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"><path d="m5 0h-4c-.552 0-1 .448-1 1v4c0 .552.448 1 1 1h4c.552 0 1-.448 1-1v-4c0-.552-.448-1-1-1z"/><path d="m23 0h-14c-.552 0-1 .448-1 1v4c0 .552.448 1 1 1h14c.552 0 1-.448 1-1v-4c0-.552-.448-1-1-1z"/><path d="m5 9h-4c-.552 0-1 .448-1 1v4c0 .552.448 1 1 1h4c.552 0 1-.448 1-1v-4c0-.552-.448-1-1-1z"/><path d="m23 9h-14c-.552 0-1 .448-1 1v4c0 .552.448 1 1 1h14c.552 0 1-.448 1-1v-4c0-.552-.448-1-1-1z"/><path d="m5 18h-4c-.552 0-1 .448-1 1v4c0 .552.448 1 1 1h4c.552 0 1-.448 1-1v-4c0-.552-.448-1-1-1z"/><path d="m23 18h-14c-.552 0-1 .448-1 1v4c0 .552.448 1 1 1h14c.552 0 1-.448 1-1v-4c0-.552-.448-1-1-1z"/></svg>
+                  Assets :</p>
+              <p class="text-xs font-semibold text-purple-800">
+                <ul class="text-xs font-semibold text-purple-800">
+                {% for asset in object.Assets.all %}
+              <li>{{ asset }}</li>
+              {% endfor %}
+                </ul>
+
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="xl:hidden flex flex-col bg-white border rounded-md shadow-md">
+   <div class="py-2 px-4 flex-col flex text-center">
+      {% if object.qr_code %}
+            <img src="{{ object.qr_code.url }}" style="mix-blend-mode:multiply">
+        {% endif %}
+        <p class="font-bold text-lg md:text-3xl">Scan here to check in!</p>
+   </div>
+   <hr class="border-dashed border-2 border-gray-400"/>
+    {% if object.Photo %}
+     <img class="" src="{{ object.Photo.url }}">
+        {% endif %}
+   <div class="py-2 px-4 flex flex-col text-sm md:text-2xl">
+     <p class="self-start font-bold text-gray-500">Start Date</p>
+     <div class="flex text-sm justify-between my-2 md:text-xl">
+         <svg class="w-4 h-4 mr-1" fill="currentColor" stroke="currentColor" enable-background="new 0 0 510.992 510.992" viewBox="0 0 510.992 510.992" xmlns="http://www.w3.org/2000/svg"><path d="m151.121 129.051c-8.837 0-16-7.163-16-16v-97.051c0-8.837 7.163-16 16-16s16 7.163 16 16v97.051c0 8.837-7.163 16-16 16z"/><path d="m359.872 129.051c-8.837 0-16-7.163-16-16v-97.051c0-8.837 7.163-16 16-16s16 7.163 16 16v97.051c0 8.837-7.163 16-16 16z"/><path d="m24.263 221.975v220.767c0 37.634 30.617 68.251 68.251 68.251h325.965c37.634 0 68.251-30.617 68.251-68.251v-220.767z"/><path d="m486.729 189.975v-73.198c0-37.634-30.617-68.251-68.251-68.251h-10.606v64.525c0 26.468-21.532 48-48 48s-48-21.532-48-48v-64.526h-112.751v64.525c0 26.468-21.532 48-48 48s-48-21.532-48-48v-64.525h-10.607c-37.634 0-68.251 30.617-68.251 68.251v73.198h462.466z"/></svg>
+       <p class="font-bold text-purple-800">{{ object.starting_date }}</p>
+     </div>
+
+   </div>
+   <div class="py-2 px-4 flex flex-col text-sm md:text-2xl">
+     <p class="self-start font-bold text-gray-500">End Date</p>
+     <div class="flex text-sm md:text-xl justify-between my-2">
+         <svg class="w-4 h-4 mr-1" fill="currentColor" stroke="currentColor" enable-background="new 0 0 510.992 510.992" viewBox="0 0 510.992 510.992" xmlns="http://www.w3.org/2000/svg"><path d="m151.121 129.051c-8.837 0-16-7.163-16-16v-97.051c0-8.837 7.163-16 16-16s16 7.163 16 16v97.051c0 8.837-7.163 16-16 16z"/><path d="m359.872 129.051c-8.837 0-16-7.163-16-16v-97.051c0-8.837 7.163-16 16-16s16 7.163 16 16v97.051c0 8.837-7.163 16-16 16z"/><path d="m24.263 221.975v220.767c0 37.634 30.617 68.251 68.251 68.251h325.965c37.634 0 68.251-30.617 68.251-68.251v-220.767z"/><path d="m486.729 189.975v-73.198c0-37.634-30.617-68.251-68.251-68.251h-10.606v64.525c0 26.468-21.532 48-48 48s-48-21.532-48-48v-64.526h-112.751v64.525c0 26.468-21.532 48-48 48s-48-21.532-48-48v-64.525h-10.607c-37.634 0-68.251 30.617-68.251 68.251v73.198h462.466z"/></svg>
+       <p class="font-bold text-purple-800">{{ object.ending_date }}</p>
+     </div>
+
+   </div>
+   <div class="py-2 px-4 flex flex-col text-sm md:text-2xl">
+     <p class="self-start font-bold text-gray-500">Locations</p>
+     <div class="flex text-sm md:text-xl justify-between my-2">
+         <ul class="font-bold text-purple-800">
+              {% for loc in object.Locations.all %}
+              <li>{{ loc }}</li>
+              {% endfor %}
+          </ul>
+     </div>
+   </div>
+      <div class="py-2 px-4 flex flex-col text-sm md:text-2xl">
+     <p class="self-start font-bold text-gray-500">Assets</p>
+     <div class="flex text-sm md:text-xl justify-between my-2">
+         <ul class="font-bold text-purple-800">
+              {% for asset in object.Assets.all %}
+              <li>{{ asset }}</li>
+              {% endfor %}
+          </ul>
+     </div>
+   </div>
+
+   
+  </div>
+</div>
+<div class="text-center">
+    <p><a class="text-purple-400 capitalize hover:text-purple-800" href="{% url 'event_edit' event.id %}">Edit</a> |
+    <a class="text-purple-400 capitalize hover:text-purple-800" href="{% url 'event_delete' event.id %}">Delete</a></p>
+  <p>Back to <a class="text-purple-400 capitalize hover:text-purple-800" href="{% url 'events' %}">All Events</a>.</p>
+</div>
+
 {% endblock content %}

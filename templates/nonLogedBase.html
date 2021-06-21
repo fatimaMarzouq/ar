@@ -18,13 +18,14 @@
   <header>
     <!-- Fixed navbar -->
     <div class="flex justify-between align-items-center p-6 bg-white border-bottom shadow-sm">
-        <div class="my-auto">
+    <div class="my-auto">
             <a href="{% url 'events' %}" class="navbar-brand my-0 font-bold block flex">
                 <div class="rounded-xl bg-purple-300 text-purple-800 p-4 mx-3">Dz</div>
                 <div class="font-bold  flex flex-col justify-center">DazShop</div>
             </a>
         </div>
     {% if user.is_authenticated %}
+
         <div class="flex w-1/6">
             <div class="m-auto">
 
@@ -40,16 +41,13 @@
         </div>
 <!--        <p><a href="#">Log out</a></p>-->
 
-      {% else %}
-        <div class="flex flex-row " style="align-items: center;">
-<!--            <a class="bg-purple-800 text-white px-6 py-0.5 h-8 rounded outline-none mx-2 block " href="{% url 'login' %}">Log In</a>-->
-            <a class="bg-purple-800 text-white px-6 py-0.5 h-8 rounded outline-none mx-2 block" href="{% url 'signup' %}">Sign Up</a>
-        </div>
+
+
       {% endif %}
     </div>
   </header>
      <div class="container">
-         <div class="max-w-xl mx-auto my-32">
+         <div class="max-w-xl mx-auto my-16">
 
     {% block content %}
     {% endblock content %}

@@ -21,7 +21,7 @@ class Asset(models.Model):
         default=1,
         on_delete=models.CASCADE,
     )
-    code = models.CharField(max_length=400)
+    Asset_File = models.FileField(max_length=400,upload_to='Assets/', blank=True)
     featured_image = models.ImageField(upload_to='covers/', blank=True)
     Google_maps_link = models.CharField(max_length=200)
     ASSETS_TYPE = [("IOS", 'IOS'), ("ANDROID", 'Android'), ]
@@ -40,7 +40,7 @@ class Asset(models.Model):
     # )
 
     def __str__(self):
-        return self.code
+        return self.Google_maps_link
 
     def get_absolute_url(self):
         return reverse('Assets_list')
@@ -70,12 +70,26 @@ class Location(models.Model):
     #     related_name='Events',
     # )
     Assets = models.ManyToManyField(Asset)
+    qr_code = models.ImageField(upload_to='qr_codes/', blank=True,null=True)
+
 
     def __str__(self):
         return self.Name
 
     def get_absolute_url(self):
         return reverse('location_list')
+
+    def save(self, *args,**kwargs):
+        qrcode_img = qrcode.make("http://127.0.0.1:8000/"+str(self.id)+"/location_details")
+        canvas = Image.new('RGB',(290,290),'white')
+        draw = ImageDraw.Draw(canvas)
+        canvas.paste(qrcode_img)
+        fname = f'qr_code-{self.id}.png'
+        buffer = BytesIO()
+        canvas.save(buffer, 'png')
+        self.qr_code.save(fname, File(buffer), save=False)
+        canvas.close()
+        super().save(*args, **kwargs)
 
 
 class Event(models.Model):
@@ -104,7 +118,7 @@ class Event(models.Model):
         return reverse('events')
 
     def save(self, *args,**kwargs):
-        qrcode_img = qrcode.make(self.id)
+        qrcode_img = qrcode.make("http://127.0.0.1:8000/"+str(self.id)+"/event_details")
         canvas = Image.new('RGB',(290,290),'white')
         draw = ImageDraw.Draw(canvas)
         canvas.paste(qrcode_img)
