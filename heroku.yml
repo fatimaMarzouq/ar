@@ -8,9 +8,6 @@ build:
 release:
   image: web
   command:
-    - heroku run bash -a mighty-garden-90398
-    - python manage.py makemigrations
-    - python manage.py migrate
     - python manage.py collectstatic --noinput
 run:
   web: gunicorn config.wsgi
