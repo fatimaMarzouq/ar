@@ -8,8 +8,8 @@ build:
 release:
   image: web
   command:
-    - python manage.py migrate
-    - python manage.py collectstatic --noinput
+    - python ar/manage.py migrate
+    - python ar/manage.py collectstatic --noinput
 run:
   web: gunicorn config.wsgi
 
